@@ -1,0 +1,43 @@
+.layout {
+    border: 1px solid white;
+    background-color: darkgrey;
+    padding: 20px;
+}
+
+.view {
+    border: 1px solid white;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+}
+
+.partial {
+    border: 1px solid white;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 45px;
+}
+a {
+    padding: 50px;
+}
+
+#canvas {
+    display: block;
+    background-color: white;
+    border: 1px solid black;
+    cursor: crosshair;
+}
+h3 {
+    font-size: 45px;
+}
+#submit {
+    margin: 20px;
+}
+h4 {
+    color: red;
+    display: inline;
+    font-size: 20px;
+}

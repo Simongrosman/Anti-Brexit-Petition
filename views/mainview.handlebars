@@ -1,0 +1,15 @@
+<div class="view">
+    <h1>{{ message }}</h1>
+    <h2>{{ submessage }}</h2>
+    <form id='form'  method="post">
+        <input type="text" name="first" class="user-first-name" placeholder="First Name" value="">
+        <input type="text" name="last" class="user-last-name" placeholder="Last Name" value="">
+        <p>Signature:</p>
+        <input id="signature" type="hidden" name="signature" value="">
+        <div class="canvasContainer">
+            <canvas id="canvas" width="350" height="120" ></canvas>
+        </div>
+        <button id="clearCanvas" type="button" name="clearbutton">Clear Form</button>
+     </form>
+     <button id="submit" type="button" name="button">Submit</button>
+</div>
