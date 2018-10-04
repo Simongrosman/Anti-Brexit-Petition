@@ -3,6 +3,7 @@ const app = express();
 const hb = require("express-handlebars");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const db = require("./db.js");
 
 app.engine("handlebars", hb());
 app.set("view engine", "handlebars");
@@ -18,22 +19,22 @@ app.use(
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.render("mainview", {
-        layout: "mainlay",
-        message: "MATT DONT GO!",
-        submessage: `Sign our petition to convince Matt
+    if (!req.cookies.userLovesCookies && req.url != "/thanks") {
+        res.render("mainview", {
+            layout: "mainlay",
+            message: "MATT DONT GO!",
+            submessage: `Sign our petition to convince Matt
         to stay at Spiced until Sage will finish the boot-camp`,
-        title: "Simon's Petition"
-    });
+            title: "Simon's Petition"
+        });
+    }
 });
 
 app.post("/", (req, res) => {
-    if (!req.cookies.userLovesCookies) {
-        res.cookie(first, last);
-    } else {
-        res.cookie("userLovesCookies", true);
-        res.redirect("/thanks");
-    }
+    db.insartData(req.body.first, req.body.last, req.body.signature)
+        .then(result => console.log(result))
+        .then(res.cookie("userLovesCookies", true))
+        .then(res.redirect("/thanks"));
 });
 
 app.get("/thanks", (req, res) => {
