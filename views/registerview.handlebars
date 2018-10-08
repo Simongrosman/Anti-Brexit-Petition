@@ -1,0 +1,19 @@
+<div class="view">
+    <h1> Are you a captcha? </h1>
+    <h1>please sign up <h1>
+    <img src="https://cms-assets.tutsplus.com/uploads/users/30/posts/23024/image/nocaptcha.gif" alt="signature">
+    <p>Already a registered user? Login <a href="/login">Here</a></p>
+    <form id='form'  method="post">
+        <input type="text" name="first" class="user-first-name" placeholder="First Name" value="">
+        <input type="text" name="last" class="user-last-name" placeholder="Last Name" value="">
+        <input type="text" name="email" class="user-email" placeholder="E-mail" value="">
+        <input type="text" name="password" class="user-password" placeholder="Password" value="">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <div class="error">
+        </div>
+        <button id="clear" type="button" name="clearbutton">Clear </button>
+        <button id="submit" type="submit" name="button">Submit</button>
+     </form>
+
+</div>

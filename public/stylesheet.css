@@ -7,8 +7,9 @@
 .view {
     border: 1px solid white;
     background-color: white;
-    padding: 20px;
-    margin: 20px;
+    padding: 40px;
+    margin: 10px;
+    left: 20px;
 }
 
 .partial {
@@ -22,6 +23,8 @@
 }
 a {
     padding: 50px;
+    font-size: 35px;
+    left: 30px;
 }
 
 #canvas {
@@ -34,10 +37,16 @@ h3 {
     font-size: 45px;
 }
 #submit {
-    margin: 20px;
+    margin: 0px;
 }
 h4 {
     color: red;
     display: inline;
     font-size: 20px;
+}
+img {
+    right: 40px;
+}
+p {
+    font-size: 25px;
 }

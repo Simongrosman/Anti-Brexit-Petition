@@ -66,13 +66,12 @@ $("#clearCanvas").on("click", function(e) {
 });
 
 $("#submit").on("click", function(e) {
-    var userFirstName = $(".user-first-name").val();
-    var userLastName = $(".user-last-name").val();
     var signature = $("#signature").val();
-    if (userFirstName && userLastName && signature) {
+    if (signature) {
         form.submit();
     } else {
-        $(".canvasContainer").append(
+        $(".error").empty();
+        $(".error").append(
             "<h4>Sorry bro, you have to fill the form first</h4>"
         );
     }
