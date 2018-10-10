@@ -144,6 +144,17 @@ app.post("/profile", (req, res) => {
         res.redirect("/sign");
     });
 });
+app.post("/remove", (req, res) => {
+    db.removeSig(req.session.user)
+        .then(() => {
+            delete req.session.signatureId;
+            res.redirect("/sign");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
 app.get("/supporters", (req, res) => {
     db.allSupporter()
         .then(data => {
@@ -157,8 +168,9 @@ app.get("/supporters", (req, res) => {
         });
 });
 app.get("/supporters/:city", (req, res) => {
-    db.allSupporterByCity(req.session.city)
+    db.allSupporterByCity(req.params.city)
         .then(data => {
+            console.log(data);
             return data["rows"];
         })
         .then(supporter => {

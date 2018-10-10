@@ -97,6 +97,16 @@ exports.getNumber = function() {
             console.log(err);
         });
 };
+exports.removeSig = function(id) {
+    const q = `
+    DELETE FROM signatures
+    WHERE user_id = $1;
+    `;
+    const params = [id || null];
+
+    return db.query(q, params);
+};
+
 exports.allSupporter = function allSupporter() {
     return db.query(`SELECT users.first AS first_name, users.last AS last_name, user_profiles.age AS age, user_profiles.city AS city, user_profiles.url AS url
 FROM signatures
