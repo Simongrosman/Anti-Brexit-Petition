@@ -2,27 +2,22 @@
 
 
 <div class="view">
-<ul>
-    {{#supporter}}
 
-    <li>{{first}} {{last}}</li>
+    <ul>
+        {{#supporter}}
+
+        {{#if url}}
+        <li><a href="http://{{url}}">{{first_name}} {{last_name}}</a> {{age}} <a href="/supporters/{{city}}">{{city}}</a></li>
+        {{else}}
+        <li>{{first_name}} {{last_name}} {{age}} <a href="/{{city}}">{{city}}</a></li>
+        {{/if}}
 
 
-    {{/supporter}}
-</ul>
 
-<p>back to see your signature <a href="/thanks">Here</a></p>
+        {{/supporter}}
+    </ul>
+
+
+<!-- <p>back to see your signature <a href="/thanks">Here</a></p> -->
 
 </div>
-
-<!-- <div id="nodeList">
-  <div class="line">
-    <div class="small square el"></div>
-  </div>
-  <div class="line">
-    <div class="small square el"></div>
-  </div>
-  <div class="line">
-    <div class="small square el"></div>
-  </div>
-</div> -->

@@ -1,6 +1,6 @@
 .layout {
     border: 1px solid white;
-    background-color: darkgrey;
+    background-color: rgb(231, 51, 34);
     padding: 20px;
 }
 
@@ -22,31 +22,46 @@
     font-size: 45px;
 }
 a {
-    padding: 50px;
-    font-size: 35px;
-    left: 30px;
+    font-size: 20px;
+    font-family: Ink Free;
+}
+ul {
+    list-style-type: none;
+    font-family: Ink Free;
+}
+li {
+    font-size: 20px;
+    font-family: Ink Free;
 }
 
 #canvas {
     display: block;
-    background-color: white;
+    background-color: rgb(231, 51, 34);
     border: 1px solid black;
     cursor: crosshair;
+    font-family: Ink Free;
 }
 h3 {
-    font-size: 45px;
+    font-size: 35px;
+    font-family: Ink Free;
 }
 #submit {
     margin: 0px;
+    font-family: Ink Free;
 }
 h4 {
     color: red;
     display: inline;
     font-size: 20px;
+    font-family: Ink Free;
 }
 img {
     right: 40px;
 }
 p {
     font-size: 25px;
+    font-family: Ink Free;
+}
+h1 {
+    font-family: Ink Free;
 }

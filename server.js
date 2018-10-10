@@ -24,37 +24,24 @@ app.use(express.static("public"));
 
 function checkForUser(req, res, next) {
     if (!req.session.user) {
-        res.redirect("/register");
-    } else {
         next();
+    } else {
+        res.redirect("/sign");
     }
 }
 function checkForsig(req, res, next) {
     if (!req.session.signatureId) {
-        res.redirect("/");
+        next();
     } else {
         res.redirect("/thanks");
     }
 }
+
 app.get("/", checkForUser, (req, res) => {
-    res.render("mainview", {
-        layout: "mainlay",
-        title: "Simon's Petition",
-        first: req.session.first,
-        last: req.session.last
-    });
+    res.redirect("/register");
 });
-app.post("/", (req, res) => {
-    db.insartSig(req.body.signature)
-        .then(result => {
-            req.session.signatureId = result["rows"][0].id;
-            res.redirect("/thanks");
-        })
-        .catch(err => {
-            console.log("err in insartData: ", err);
-        });
-});
-app.get("/register", (req, res) => {
+
+app.get("/register", checkForUser, (req, res) => {
     res.render("registerview", {
         layout: "mainlay",
         title: "Simon's Petition"
@@ -62,7 +49,7 @@ app.get("/register", (req, res) => {
 });
 app.post("/register", (req, res) => {
     db.hashPassword(req.body.password).then(hash => {
-        db.insartNewUser(
+        db.insertNewUser(
             req.body.first,
             req.body.last,
             req.body.email,
@@ -71,11 +58,33 @@ app.post("/register", (req, res) => {
             req.session.user = result["rows"][0].id;
             req.session.first = result["rows"][0].first;
             req.session.last = result["rows"][0].last;
-            res.redirect("/");
+            res.redirect("/profile");
         });
     });
 });
-app.get("/login", (req, res) => {
+
+///////////////////signing //////////////////
+app.get("/sign", checkForsig, (req, res) => {
+    res.render("mainview", {
+        layout: "mainlay",
+        title: "Simon's Petition",
+        first: req.session.first,
+        last: req.session.last
+    });
+});
+/////////////////sending the sig to DB//////
+app.post("/sign", (req, res) => {
+    db.insertSig(req.body.signature, req.session.user)
+        .then(result => {
+            req.session.signatureId = result["rows"][0].id;
+            res.redirect("/thanks");
+        })
+        .catch(err => {
+            console.log("err in insertData: ", err);
+        });
+});
+
+app.get("/login", checkForUser, (req, res) => {
     res.render("loginview", {
         layout: "mainlay",
         title: "Simon's Petition"
@@ -83,10 +92,13 @@ app.get("/login", (req, res) => {
 });
 app.post("/login", (req, res) => {
     db.thisUser(req.body.email).then(data => {
+        req.session.user = data["rows"][0].id;
+        req.session.first = data["rows"][0].first;
+        req.session.last = data["rows"][0].last;
         db.checkPassword(req.body.password, data["rows"][0].password)
             .then(doesMatch => {
                 if (doesMatch) {
-                    res.redirect("/");
+                    res.redirect("/sign");
                 } else {
                     res.render("loginview", {
                         layout: "mainlay",
@@ -101,19 +113,38 @@ app.post("/login", (req, res) => {
     });
 });
 app.get("/thanks", (req, res) => {
-    db.getNumber().then(numOfSigners => {
-        db.getPic(req.session.signatureId).then(sig => {
-            res.render("thanksview", {
-                layout: "mainlay",
-                message: req.session.first + " " + req.session.last,
-                title: "Simon's Petition",
-                numOfSigners:
-                    numOfSigners + " kind souls like you signed this petition",
-                sig: sig
-            });
+    // db.getNumber().then(numOfSigners => {
+    db.getPic(req.session.signatureId).then(sig => {
+        res.render("thanksview", {
+            layout: "mainlay",
+            message: req.session.first + " " + req.session.last,
+            title: "Simon's Petition",
+            numOfSigners: "Who else?",
+            sig: sig
         });
     });
+    // });
 });
+app.get("/profile", (req, res) => {
+    res.render("profileview", {
+        layout: "mainlay",
+        title: "Simon's Petition"
+    });
+});
+app.post("/profile", (req, res) => {
+    db.insertNewProfile(
+        req.body.age,
+        req.body.city,
+        req.body.url,
+        req.session.user
+    ).then(result => {
+        req.session.age = result["rows"][0].age;
+        req.session.city = result["rows"][0].city;
+        req.session.url = result["rows"][0].url;
+        res.redirect("/sign");
+    });
+});
+
 app.get("/supporters", (req, res) => {
     db.allSupporter()
         .then(data => {
@@ -122,14 +153,23 @@ app.get("/supporters", (req, res) => {
         .then(supporter => {
             res.render("supportersview", {
                 layout: "mainlay",
-                title: "Simon's Petition",
                 supporter: supporter
             });
-        })
-        .catch(err => {
-            console.log("err in allSupporter: ", err);
         });
 });
+// app.get("/supporters/:city", (req, res) => {
+//     db.allSupporter()
+//         .then(data => {
+//             return data["rows"];
+//         })
+//         .then(supporter => {
+//             res.render("supportersview", {
+//                 layout: "mainlay",
+//                 supporter: supporter
+//             });
+//         });
+// });
+
 app.listen(8080, () => {
     console.log("listening on port 8080");
 });

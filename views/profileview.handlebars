@@ -1,0 +1,17 @@
+<div class="view">
+    <h1> Are you a captcha? </h1>
+    <h1>Now Please tell us some info about yourself so we could sell it  <h1>
+    <img src="https://cms-assets.tutsplus.com/uploads/users/30/posts/23024/image/nocaptcha.gif" alt="signature">
+    <form id='form'  method="post">
+        <input type="text" name="age" class="user-age" placeholder="age" value="">
+        <input type="text" name="city" class="user-city" placeholder="city" value="">
+        <input type="text" name="url" class="user-url" placeholder="private website" value="">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <div class="error">
+        </div>
+        <button id="clear" type="button" name="clearbutton">Clear </button>
+        <button id="submit" type="submit" name="button">continue</button>
+     </form>
+
+</div>
