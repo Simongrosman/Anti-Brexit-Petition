@@ -1,6 +1,6 @@
 .layout {
     border: 1px solid white;
-    background-color: rgb(231, 51, 34);
+    background-color: rgb(51, 169, 238);
     padding: 20px;
 }
 
@@ -36,7 +36,7 @@ li {
 
 #canvas {
     display: block;
-    background-color: rgb(231, 51, 34);
+    background-color: rgb(51, 169, 238);
     border: 1px solid black;
     cursor: crosshair;
     font-family: Ink Free;
@@ -50,13 +50,13 @@ h3 {
     font-family: Ink Free;
 }
 h4 {
-    color: red;
+    color: rgb(51, 169, 238);
     display: inline;
     font-size: 20px;
     font-family: Ink Free;
 }
 img {
-    right: 40px;
+    right: 50px;
 }
 p {
     font-size: 25px;
@@ -64,4 +64,18 @@ p {
 }
 h1 {
     font-family: Ink Free;
+}
+input {
+    font-family: Ink Free;
+    display: block;
+    padding: 10px;
+    font-size: 25px;
+    margin: 10px;
+    width: 350px;
+}
+button {
+    font-family: Ink Free;
+    padding: 10px;
+    font-size: 25px;
+    margin: 10px;
 }

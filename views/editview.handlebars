@@ -1,0 +1,25 @@
+<div class="view">
+    <h1> Are you a captcha? </h1>
+    <h1>please sign up <h1>
+    <img src="https://cms-assets.tutsplus.com/uploads/users/30/posts/23024/image/nocaptcha.gif" alt="signature">
+    <h1>Edit your profile</h1>
+    <form id='form'  method="post">
+        <p>first name</p>
+        <input type="text" name="first" class="user-first-name" placeholder="First Name" value="{{data.first_name}}">
+        <p>last name</p>
+        <input type="text" name="last" class="user-last-name" placeholder="Last Name" value="{{data.last_name}}">
+        <p>email</p>
+        <input type="text" name="email" class="user-email" placeholder="email" value="{{data.email}}">
+        <p>password</p>
+        <input type="text" name="password" class="user-password" placeholder="Password" value="">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <p>age</p>
+        <input type="text" name="age" class="user-age" placeholder="age" value="{{data.age}}">
+        <p>city</p>
+        <input type="text" name="city" class="user-city" placeholder="city" value="{{data.city}}">
+        <p>private website</p>
+        <input type="text" name="url" class="user-url" placeholder="private website" value="{{data.url}}">
+        <button id="submit" type="submit" name="button">update</button>
+     </form>
+
+</div>

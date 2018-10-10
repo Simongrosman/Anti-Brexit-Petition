@@ -63,16 +63,14 @@ app.post("/register", (req, res) => {
     });
 });
 
-///////////////////signing //////////////////
 app.get("/sign", checkForsig, (req, res) => {
     res.render("mainview", {
-        layout: "mainlay",
+        layout: "canvaslay",
         title: "Simon's Petition",
         first: req.session.first,
         last: req.session.last
     });
 });
-/////////////////sending the sig to DB//////
 app.post("/sign", (req, res) => {
     db.insertSig(req.body.signature, req.session.user)
         .then(result => {
@@ -91,10 +89,12 @@ app.get("/login", checkForUser, (req, res) => {
     });
 });
 app.post("/login", (req, res) => {
-    db.thisUser(req.body.email).then(data => {
+    db.getFullProfileByEmail(req.body.email).then(data => {
         req.session.user = data["rows"][0].id;
-        req.session.first = data["rows"][0].first;
-        req.session.last = data["rows"][0].last;
+        req.session.first = data["rows"][0].first_name;
+        req.session.last = data["rows"][0].last_name;
+        req.session.email = data["rows"][0].email;
+        req.session.signatureId = data["rows"][0].sig;
         db.checkPassword(req.body.password, data["rows"][0].password)
             .then(doesMatch => {
                 if (doesMatch) {
@@ -113,17 +113,17 @@ app.post("/login", (req, res) => {
     });
 });
 app.get("/thanks", (req, res) => {
-    // db.getNumber().then(numOfSigners => {
-    db.getPic(req.session.signatureId).then(sig => {
-        res.render("thanksview", {
-            layout: "mainlay",
-            message: req.session.first + " " + req.session.last,
-            title: "Simon's Petition",
-            numOfSigners: "Who else?",
-            sig: sig
+    db.getNumber().then(numOfSigners => {
+        db.getPic(req.session.signatureId).then(sig => {
+            res.render("thanksview", {
+                layout: "mainlay",
+                message: req.session.first + " " + req.session.last,
+                title: "Simon's Petition",
+                numOfSigners: numOfSigners,
+                sig: sig
+            });
         });
     });
-    // });
 });
 app.get("/profile", (req, res) => {
     res.render("profileview", {
@@ -144,7 +144,6 @@ app.post("/profile", (req, res) => {
         res.redirect("/sign");
     });
 });
-
 app.get("/supporters", (req, res) => {
     db.allSupporter()
         .then(data => {
@@ -157,18 +156,85 @@ app.get("/supporters", (req, res) => {
             });
         });
 });
-// app.get("/supporters/:city", (req, res) => {
-//     db.allSupporter()
-//         .then(data => {
-//             return data["rows"];
-//         })
-//         .then(supporter => {
-//             res.render("supportersview", {
-//                 layout: "mainlay",
-//                 supporter: supporter
-//             });
-//         });
-// });
+app.get("/supporters/:city", (req, res) => {
+    db.allSupporterByCity(req.session.city)
+        .then(data => {
+            return data["rows"];
+        })
+        .then(supporter => {
+            res.render("supportersview", {
+                layout: "mainlay",
+                supporter: supporter
+            });
+        });
+});
+
+app.get("/profile/edit", (req, res) => {
+    db.getFullProfile(req.session.user).then(data => {
+        res.render("editview", {
+            layout: "mainlay",
+            title: "Simon's Petition",
+            data: data["rows"][0]
+        });
+    });
+});
+app.post("/profile/edit", (req, res) => {
+    if (req.body.password) {
+        db.hashPassword(req.body.password)
+            .then(hash => {
+                Promise.all([
+                    db.updateUserOneWith(
+                        req.session.user,
+                        req.body.first,
+                        req.body.last,
+                        req.body.email,
+                        hash
+                    ),
+                    db.updateUserTwo(
+                        req.session.user,
+                        req.body.age,
+                        req.body.city,
+                        req.body.url
+                    )
+                ])
+                    .then(() => {
+                        res.redirect("/thanks");
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } else {
+        Promise.all([
+            db.updateUserOne(
+                req.session.user,
+                req.body.first,
+                req.body.last,
+                req.body.email
+            ),
+            db
+                .updateUserTwo(
+                    req.session.user,
+                    req.body.age,
+                    req.body.city,
+                    req.body.url
+                )
+                .catch(err => {
+                    console.log("NO");
+                    throw err;
+                })
+        ])
+            .then(() => {
+                res.redirect("/thanks");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+});
 
 app.listen(8080, () => {
     console.log("listening on port 8080");
