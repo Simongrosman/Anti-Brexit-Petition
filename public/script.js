@@ -44,7 +44,7 @@ function addClick(x, y, dragging) {
 function redraw() {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 
-    context.strokeStyle = "black";
+    context.strokeStyle = "white";
     context.lineJoin = "round";
     context.lineWidth = 5;
 
@@ -71,8 +71,6 @@ $("#submit").on("click", function(e) {
         form.submit();
     } else {
         $(".error").empty();
-        $(".error").append(
-            "<h4>Sorry bro, you have to fill the form first</h4>"
-        );
+        $(".error").append("<h4> Sorry, you have to sign to continue</h4>");
     }
 });

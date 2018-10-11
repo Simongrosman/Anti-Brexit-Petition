@@ -1,25 +1,22 @@
 .layout {
     border: 1px solid white;
-    background-color: rgb(51, 169, 238);
+    background-color: #33405e;
     padding: 20px;
 }
 
 .view {
+    display: flex;
     border: 1px solid white;
     background-color: white;
     padding: 40px;
     margin: 10px;
-    left: 20px;
+    flex-direction: column;
+    align-items: center;
 }
-
-.partial {
-    border: 1px solid white;
-    background-color: white;
-    padding: 20px;
-    margin: 20px;
+form {
     display: flex;
-    justify-content: space-around;
-    font-size: 45px;
+    flex-direction: column;
+    align-items: center;
 }
 a {
     font-size: 20px;
@@ -33,13 +30,16 @@ li {
     font-size: 20px;
     font-family: Ink Free;
 }
-
+#sig {
+    background-color: #33405e;
+}
 #canvas {
     display: block;
-    background-color: rgb(51, 169, 238);
-    border: 1px solid black;
+    background-color: #33405e;
+    border: 1px solid white;
     cursor: crosshair;
     font-family: Ink Free;
+    color: white;
 }
 h3 {
     font-size: 35px;
@@ -48,9 +48,11 @@ h3 {
 #submit {
     margin: 0px;
     font-family: Ink Free;
+    background-color: #33405e;
+    color: white;
 }
 h4 {
-    color: rgb(51, 169, 238);
+    color: #33405e;
     display: inline;
     font-size: 20px;
     font-family: Ink Free;
@@ -58,12 +60,21 @@ h4 {
 img {
     right: 50px;
 }
+iframe {
+    display: hidden;
+}
+
 p {
     font-size: 25px;
     font-family: Ink Free;
+    font-weight: bold;
 }
 h1 {
     font-family: Ink Free;
+}
+h2 {
+    font-family: Ink Free;
+    font-size: 25px;
 }
 input {
     font-family: Ink Free;
@@ -78,6 +89,8 @@ button {
     padding: 10px;
     font-size: 25px;
     margin: 10px;
+    background-color: #33405e;
+    color: white;
 }
 #delete {
     background: none;

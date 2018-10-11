@@ -7,8 +7,10 @@ if (process.env.NODE_ENV === "production") {
     secrets = process.env;
     dbUrl = secrets.DATABASE_URL;
 } else {
-    secrets = require("./secrets.json");
-    dbUrl = `postgres:${dbUser}:${dbPassword}@localhost:5432/signatures`;
+    secrets = require("./secrets");
+    dbUrl = `postgres:${secrets.dbUser}:${
+        secrets.dbPassword
+    }@localhost:5432/signatures`;
 }
 
 const db = spicedPg(dbUrl);

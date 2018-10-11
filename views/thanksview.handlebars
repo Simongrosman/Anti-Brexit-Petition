@@ -1,13 +1,10 @@
 <div class="view">
-    <h3> THANKS! </h3>
+    <h3> THANKS !  </h3>
     <h1>{{ message }}'s signature:</h1>
-
-
     <div class="pic">
-
-        <img src="{{sig}}" alt="signature">
+        <img  id="sig" src="{{sig}}" alt="signature">
     </div>
-    <a href="/supporters">{{numOfSigners}} Beautiful souls are not a capcha</a><br><br>
+    <a href="/supporters">{{numOfSigners}} Beautiful souls also signed</a><br><br>
     <a href="/profile/edit">Edit your profile</a>
 
     <form action="/remove" id='form'  method="post">
