@@ -7,6 +7,10 @@ const db = spicedPg(
     `postgres:${dbUser}:${dbPassword}@localhost:5432/signatures`
 );
 
+var dbUrl =
+    process.env.DATABASE_URL ||
+    `postgres:${dbUser}:${dbPassword}@localhost:5432/signatures`;
+
 exports.insertNewUser = function insertNewUser(first, last, email, password) {
     const q = `
 INSERT INTO users (first, last, email, password) VALUES ($1, $2, $3, $4) RETURNING *`;
