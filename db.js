@@ -1,15 +1,17 @@
 var spicedPg = require("spiced-pg");
 var bcrypt = require("bcryptjs");
 
-const { dbUser, dbPassword } = require("./secrets");
+let secrets;
+let dbUrl;
+if (process.env.NODE_ENV === "production") {
+    secrets = process.env;
+    dbUrl = secrets.DATABASE_URL;
+} else {
+    secrets = require("./secrets.json");
+    dbUrl = `postgres:${dbUser}:${dbPassword}@localhost:5432/signatures`;
+}
 
-const db = spicedPg(
-    `postgres:${dbUser}:${dbPassword}@localhost:5432/signatures`
-);
-
-var dbUrl =
-    process.env.DATABASE_URL ||
-    `postgres:${dbUser}:${dbPassword}@localhost:5432/signatures`;
+const db = spicedPg(dbUrl);
 
 exports.insertNewUser = function insertNewUser(first, last, email, password) {
     const q = `
