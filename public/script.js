@@ -32,8 +32,8 @@ var paint;
 
 drawSign.addEventListener("touchstart", function(e) {
     e.preventDefault();
-    var mouseX = e.touches[0].pageX - canvasOffset.left;
-    var mouseY = e.touches[0].pageY - canvasOffset.top;
+    var mouseX = e.touches[0].pageX - this.offsetLeft;
+    var mouseY = e.touches[0].pageY - this.offseTop;
 
     paint = true;
     addClick(mouseX, mouseY);
@@ -42,8 +42,8 @@ drawSign.addEventListener("touchstart", function(e) {
 drawSign.addEventListener("touchmove", function(e) {
     e.preventDefault();
     addClick(
-        e.touches[0].pageX - this.canvasOffset.left,
-        e.touches[0].pageY - this.canvasOffset.top,
+        e.touches[0].pageX - this.offsetLeft,
+        e.touches[0].pageY - this.offseTop,
         true
     );
     redraw();
