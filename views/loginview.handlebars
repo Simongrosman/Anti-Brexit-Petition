@@ -1,11 +1,11 @@
 <div class="view">
 <h1> Daylight Saving Time - How Is This Still A Thing? </h1><br>
-    <h1>please log in to stop the madness <h1>
         <img src="https://www.roadsidedentalmarketing.com/wp-content/uploads/daylight-savings-what-to-do-in-an-hour.png" alt="">
+        <h1>please log in to stop the madness <h1>
 
     <form id='form'  method="post">
-        <input type="text" name="email" class="user-email" placeholder="E-mail" value="">
-        <input type="text" name="password" class="user-password" placeholder="Password" value="">
+        <input type="text" name="email" class="user-email" placeholder="E-mail" value={{email}}>
+        <input type="password" name="password" class="user-password" placeholder="Password" value="">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
         <div class="error">
@@ -13,5 +13,6 @@
         </div>
         <button id="submit" type="submit" name="button">Log in</button>
      </form>
+     <p><a href="/register">Back</a></p>
 
 </div>

@@ -48,19 +48,35 @@ app.get("/register", checkForUser, (req, res) => {
     });
 });
 app.post("/register", (req, res) => {
-    db.hashPassword(req.body.password).then(hash => {
-        db.insertNewUser(
-            req.body.first,
-            req.body.last,
-            req.body.email,
-            hash
-        ).then(result => {
-            req.session.user = result["rows"][0].id;
-            req.session.first = result["rows"][0].first;
-            req.session.last = result["rows"][0].last;
-            res.redirect("/profile");
+    if (
+        req.body.first &&
+        req.body.last &&
+        req.body.email &&
+        req.body.password
+    ) {
+        db.hashPassword(req.body.password).then(hash => {
+            db.insertNewUser(
+                req.body.first,
+                req.body.last,
+                req.body.email,
+                hash
+            ).then(result => {
+                req.session.user = result["rows"][0].id;
+                req.session.first = result["rows"][0].first;
+                req.session.last = result["rows"][0].last;
+                res.redirect("/profile");
+            });
         });
-    });
+    } else {
+        res.render("registerview", {
+            layout: "mainlay",
+            title: "Simon's Petition",
+            message: "it looks like you missed some parts, are you high? ",
+            first: req.body.first,
+            last: req.body.last,
+            email: req.body.email
+        });
+    }
 });
 
 app.get("/sign", checkForsig, (req, res) => {
@@ -103,7 +119,8 @@ app.post("/login", (req, res) => {
                     res.render("loginview", {
                         layout: "mainlay",
                         title: "Simon's Petition",
-                        message: "wrong username / password, please try again"
+                        message: "wrong username / password, please try again",
+                        email: req.body.email
                     });
                 }
             })
@@ -155,6 +172,11 @@ app.post("/remove", (req, res) => {
         });
 });
 
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/register");
+});
+
 app.get("/supporters", (req, res) => {
     db.allSupporter()
         .then(data => {
@@ -170,7 +192,6 @@ app.get("/supporters", (req, res) => {
 app.get("/supporters/:city", (req, res) => {
     db.allSupporterByCity(req.params.city)
         .then(data => {
-            console.log(data);
             return data["rows"];
         })
         .then(supporter => {
@@ -235,7 +256,6 @@ app.post("/profile/edit", (req, res) => {
                     req.body.url
                 )
                 .catch(err => {
-                    console.log("NO");
                     throw err;
                 })
         ])

@@ -1,12 +1,13 @@
 <div class="view">
+    <p id='logout'><a href="/logout">Log out</a></p>
+
     <h3> THANKS !  </h3>
     <h1>{{ message }}'s signature:</h1>
     <div class="pic">
         <img  id="sig" src="{{sig}}" alt="signature">
     </div>
-    <a href="/supporters">{{numOfSigners}} Beautiful souls also signed</a><br><br>
+    <a href="/supporters">{{numOfSigners}} Beautiful souls also signed</a>
     <a href="/profile/edit">Edit your profile</a>
-
     <form action="/remove" id='form'  method="post">
     <button id="delete" >Remove your signature</button>
     <input type="hidden" name="_csrf" value="{{csrfToken}}">

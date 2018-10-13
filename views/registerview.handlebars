@@ -15,14 +15,15 @@
     please sign up to stop this stupid nonsense clock changes twice a year<p>
     <p>Already Signed up? <a href="/login">Login</a></p>
     <form id='form'  method="post">
-        <input type="text" name="first" class="user-first-name" placeholder="First Name" value="">
-        <input type="text" name="last" class="user-last-name" placeholder="Last Name" value="">
-        <input type="text" name="email" class="user-email" placeholder="E-mail" value="">
-        <input type="text" name="password" class="user-password" placeholder="Password" value="">
+        <input type="text" name="first" class="user-first-name" placeholder="First Name" value={{first}}>
+        <input type="text" name="last" class="user-last-name" placeholder="Last Name" value={{last}}>
+        <input type="text" name="email" class="user-email" placeholder="E-mail" value={{email}}>
+        <input type="password" name="password" class="user-password" placeholder="Password" value="">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
 
-        <div class="error">
-        </div>
+            <p>    {{message}}
+</p>
+
         <button id="submit" type="submit" name="button">Submit</button>
      </form>
 

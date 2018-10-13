@@ -19,16 +19,16 @@ form {
     align-items: center;
 }
 a {
-    font-size: 20px;
-    font-family: Ink Free;
+    font-size: 25px;
+    font-family: ebrima;
 }
 ul {
     list-style-type: none;
-    font-family: Ink Free;
+    font-family: ebrima;
 }
 li {
     font-size: 20px;
-    font-family: Ink Free;
+    font-family: ebrima;
 }
 #sig {
     background-color: #33405e;
@@ -38,16 +38,16 @@ li {
     background-color: #33405e;
     border: 1px solid white;
     cursor: crosshair;
-    font-family: Ink Free;
+    font-family: ebrima;
     color: white;
 }
 h3 {
     font-size: 35px;
-    font-family: Ink Free;
+    font-family: ebrima;
 }
 #submit {
     margin: 0px;
-    font-family: Ink Free;
+    font-family: ebrima;
     background-color: #33405e;
     color: white;
 }
@@ -55,7 +55,7 @@ h4 {
     color: #33405e;
     display: inline;
     font-size: 20px;
-    font-family: Ink Free;
+    font-family: ebrima;
 }
 img {
     right: 50px;
@@ -66,18 +66,18 @@ iframe {
 
 p {
     font-size: 25px;
-    font-family: Ink Free;
+    font-family: ebrima;
     font-weight: bold;
 }
 h1 {
-    font-family: Ink Free;
+    font-family: ebrima;
 }
 h2 {
-    font-family: Ink Free;
+    font-family: ebrima;
     font-size: 25px;
 }
 input {
-    font-family: Ink Free;
+    font-family: ebrima;
     display: block;
     padding: 10px;
     font-size: 25px;
@@ -85,7 +85,7 @@ input {
     width: 350px;
 }
 button {
-    font-family: Ink Free;
+    font-family: ebrima;
     padding: 10px;
     font-size: 25px;
     margin: 10px;
@@ -99,9 +99,16 @@ button {
     padding: 0;
     font: inherit;
     cursor: pointer;
-    font-family: Ink Free;
-    font-size: 20px;
+    font-family: ebrima;
+    font-size: 25px;
     font-style: underline;
     text-decoration: underline;
     right: 10px;
+}
+#logout {
+    display: flex;
+    font-family: ebrima;
+    cursor: pointer;
+    color: #33405e;
+    align-self: flex-end;
 }
