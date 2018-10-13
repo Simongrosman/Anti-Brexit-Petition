@@ -59,6 +59,8 @@ function redraw() {
         context.closePath();
         context.stroke();
     }
+    var dataURL = canvas.toDataURL();
+    $("#signature").val(dataURL);
 }
 
 $("#clearCanvas").on("click", function(e) {
