@@ -17,12 +17,6 @@ $("#canvas").mousemove(function(e) {
     }
 });
 
-$("#canvas").mousemove(function(e) {
-    if (paint) {
-        addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-        redraw();
-    }
-});
 $("#canvas").mouseup(function(e) {
     paint = false;
     var dataURL = canvas.toDataURL();
@@ -35,6 +29,29 @@ var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
 var paint;
+
+drawSign.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    var mouseX = e.touches[0].pageX - canvasOffset.left;
+    var mouseY = e.touches[0].pageY - canvasOffset.top;
+
+    paint = true;
+    addClick(mouseX, mouseY);
+    redraw();
+});
+drawSign.addEventListener("touchmove", function(e) {
+    e.preventDefault();
+    addClick(
+        e.touches[0].pageX - this.canvasOffset.left,
+        e.touches[0].pageY - this.canvasOffset.top,
+        true
+    );
+    redraw();
+});
+drawSign.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    paint = false;
+});
 
 function addClick(x, y, dragging) {
     clickX.push(x);
