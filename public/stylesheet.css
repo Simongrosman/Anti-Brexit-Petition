@@ -5,18 +5,88 @@
 }
 
 .view {
-    display: flex;
     border: 1px solid white;
     background-color: white;
     padding: 40px;
     margin: 10px;
-    flex-direction: column;
-    align-items: center;
+    font-family: ebrima;
 }
-form {
+.reg {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+.headline {
+    font-size: 40px;
+}
+.mainphoto {
+    height: 50vh;
+    width: 40vw;
+    margin-bottom: 60px;
+}
+.maintop {
+    display: flex;
+    flex-direction: row;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 15vw;
+    height: 17vh;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    margin-left: 3px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 15vw;
+    height: 17vh;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 15vw;
+    height: 17vh;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: #33405e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-card-back {
+    background-color: #33405e;
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cards-back-text {
+    font-size: 22px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 a {
     font-size: 25px;
@@ -46,7 +116,6 @@ h3 {
     font-family: ebrima;
 }
 #submit {
-    margin: 0px;
     font-family: ebrima;
     background-color: #33405e;
     color: white;
@@ -69,9 +138,7 @@ p {
     font-family: ebrima;
     font-weight: bold;
 }
-h1 {
-    font-family: ebrima;
-}
+
 h2 {
     font-family: ebrima;
     font-size: 25px;
@@ -83,6 +150,9 @@ input {
     font-size: 25px;
     margin: 10px;
     width: 350px;
+}
+#signature {
+    margin: 0px;
 }
 button {
     font-family: ebrima;
@@ -105,7 +175,7 @@ button {
     text-decoration: underline;
     right: 10px;
 }
-#logout {
+.logout {
     display: flex;
     font-family: ebrima;
     cursor: pointer;

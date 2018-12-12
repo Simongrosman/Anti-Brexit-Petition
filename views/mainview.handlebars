@@ -1,12 +1,11 @@
 <div class="view">
-    <p id='logout'><a href="/logout">Log out</a></p>
-    <h1> Daylight Saving Time - How Is This Still A Thing? </h1><br>
-    <iframe width="760" height="400" src="https://www.youtube.com/embed/br0NW9ufUUw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="reg">
+
+    <a class='logout' href="/logout">Log out</a>
+    <h1 class = "headline"> WE WANT TO Cancel Brexit and Stay In Fully </h1><br>
+    <div class="reg">
+        <h1>   {{first}} {{last}}   </h1>
     <form id='form'  method="post">
-        <h1 class="user">
-            {{first}} {{last}}
-        </h1>
-        <p>Signature:</p>
         <input id="signature" type="hidden" name="signature" value="">
          <input type="hidden" name="_csrf" value="{{csrfToken}}">
         <div class="canvasContainer">
@@ -15,8 +14,13 @@
         <div class="error">
 
         </div>
-        <button id="clearCanvas" type="button" name="clearbutton">Clean</button>
      </form>
+     <div class="maintop">
+
+     <button id="clearCanvas" type="button" name="clearbutton">Clean</button>
      <button id="submit" type="button" name="button">Submit</button>
+ </div>
+ </div>
+ </div>
 
 </div>

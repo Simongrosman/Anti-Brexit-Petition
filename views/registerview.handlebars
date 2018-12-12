@@ -1,30 +1,77 @@
 <div class="view">
-    <h1> Daylight Saving Time - How Is This Still A Thing? </h1><br>
-    <div class="photo">
-<img src="https://www.roadsidedentalmarketing.com/wp-content/uploads/daylight-savings-what-to-do-in-an-hour.png" alt="" onclick="myFunction()">
+    <div class="reg">
+        <h1 class = "headline"> WE WANT TO Cancel Brexit and Stay In Fully </h1><br>
+        <img class="mainphoto" src="/cover.jpg" alt="" >
+        <div class="maintop">
+
+            <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+        <h1>The future of our Kids</h1>
+    </div>
+    <div class="flip-card-back">
+      <p class="cards-back-text">Our kids need to be part of Europe to have a more choices for their future we should not deny them any opportunities</p>
+    </div>
+  </div>
 </div>
-<iframe style="display : none" width="760" height="400" src="https://www.youtube.com/embed/br0NW9ufUUw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<h1>Economy</h1>
+</div>
+<div class="flip-card-back">
+<p class="cards-back-text">Being part of a bigger market force helps keep our food costs down and gives us high quality</p>
+</div>
+</div>
+</div>
 
 
-<!-- <button class="showButton show">Show and hide</button> -->
+<div class="flip-card">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<h1> Travel and holidays</h1>
+</div>
+<div class="flip-card-back">
+<p class="cards-back-text">Business Travel and holidays will become more costly and take longer with borders </p>
+</div>
+</div>
+</div>
 
 
-<p>Why are we changing the clock twice a year?<br> the farmers? they don't give a F**k<br>
-    saving energy? nope.<br><br>
+    <div class="flip-card">
+    <div class="flip-card-inner">
+    <div class="flip-card-front">
+    <h1> Our voice in the world</h1>
+    </div>
+    <div class="flip-card-back">
+    <p class="cards-back-text">EU helps us by just by being part of a major voice in the world</p>
+    </div>
+    </div>
+    </div>
+    <div class="flip-card">
+    <div class="flip-card-inner">
+    <div class="flip-card-front">
+    <h1> Science and Education</h1>
+    </div>
+    <div class="flip-card-back">
+    <p class="cards-back-text">Science and Education benefit from sharing knowledge and ideas</p>
+    </div>
+    </div>
+    </div>
+</div>
 
-    please sign up to stop this stupid nonsense clock changes twice a year<p>
-    <p>Already Signed up? <a href="/login">Login</a></p>
-    <form id='form'  method="post">
+
+    <p class="main-text">We believe that Brexit is the biggest mistake this country could possibly make!</p>
+        <p>Please sign up to support us</p>
+    <form class='form'  method="post">
         <input type="text" name="first" class="user-first-name" placeholder="First Name" value={{first}}>
         <input type="text" name="last" class="user-last-name" placeholder="Last Name" value={{last}}>
         <input type="text" name="email" class="user-email" placeholder="E-mail" value={{email}}>
         <input type="password" name="password" class="user-password" placeholder="Password" value="">
         <input type="hidden" name="_csrf" value="{{csrfToken}}">
-
-            <p>    {{message}}
-</p>
-
+        <p>    {{message}}</p>
+        <p>Already Signed up? <a href="/login">Login</a></p>
         <button id="submit" type="submit" name="button">Submit</button>
      </form>
-
+</div>
 </div>

@@ -28,29 +28,6 @@ var clickY = new Array();
 var clickDrag = new Array();
 var paint;
 
-// context.addEventListener("touchstart", function(e) {
-//     e.preventDefault();
-//     var mouseX = e.touches[0].pageX - this.offsetLeft;
-//     var mouseY = e.touches[0].pageY - this.offseTop;
-//
-//     paint = true;
-//     addClick(mouseX, mouseY);
-//     redraw();
-// });
-// context.addEventListener("touchmove", function(e) {
-//     e.preventDefault();
-//     addClick(
-//         e.touches[0].pageX - this.offsetLeft,
-//         e.touches[0].pageY - this.offseTop,
-//         true
-//     );
-//     redraw();
-// });
-// context.addEventListener("touchend", function(e) {
-//     e.preventDefault();
-//     paint = false;
-// });
-
 function addClick(x, y, dragging) {
     clickX.push(x);
     clickY.push(y);
